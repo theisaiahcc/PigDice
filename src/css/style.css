@@ -21,6 +21,10 @@ h2{
     width: 175px;
 }
 
+#rules{
+    float: right;
+}
+
 #player-one{
     margin-right: 8px;
 }
@@ -38,8 +42,9 @@ h2{
     position:absolute;
 }
 
-#rulesBtn, #rules{
-    float: right;
+#rulesBtn{
+    position:fixed;
+    right:0;
 }
 
 .open{

@@ -312,11 +312,13 @@ function displayRules(){
         para.appendChild(node1);
         rules.appendChild(para);
         rules.classList.add("open");
+        get("rulesBtn").value = "Close"
         rulesMin = false;
     }
     else{
         rules.innerHTML = "";
         rules.classList.remove("open");
+        get("rulesBtn").value = "Rules"
         rulesMin = true;
     }
     
