@@ -618,8 +618,8 @@ function diceRoll(roll) {
     game.appendChild(renderer.domElement);
     const scene = new _three.Scene();
     const camera = new _three.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const orbit = new (0, _orbitControlsJs.OrbitControls)(camera, renderer.domElement);
-    orbit.update();
+    // const orbit = new OrbitControls(camera, renderer.domElement);
+    // orbit.update();
     // const axesHelper = new THREE.AxesHelper(5);
     // scene.add(axesHelper);
     //test cam

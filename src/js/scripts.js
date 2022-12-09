@@ -44,8 +44,8 @@ function diceRoll(roll) {
         1000
     );
 
-    const orbit = new OrbitControls(camera, renderer.domElement);
-    orbit.update();
+    // const orbit = new OrbitControls(camera, renderer.domElement);
+    // orbit.update();
 
     // const axesHelper = new THREE.AxesHelper(5);
     // scene.add(axesHelper);
