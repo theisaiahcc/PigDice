@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    background-color:#E4E4E4;
+}
+
+h2{
+    color: rgb(0, 0, 0);
+}
+
+#game{
+    position: relative;
+}
+
+#players{
+    display: flex;
+    position: absolute;
+}
+
+#player-one, #player-two, #total{
+    color: rgb(18, 26, 37);
+    width: 175px;
+}
+
+#player-one{
+    margin-right: 8px;
+}
+
+#player-two{
+    margin-left: 8px;
+}
+
+#new-game{
+    border-style: solid;
+}
+
+#message{
+    padding-top: 6px;
+    position:absolute;
+}
+
+.active{
+    color:green;
+    border: 3px solid;
+    border-color: rgb(22, 139, 24);
+}
+
+.red{
+    color:red;
+}
