@@ -38,6 +38,16 @@ h2 {
   position: absolute;
 }
 
+#rulesBtn, #rules {
+  float: right;
+}
+
+.open {
+  width: 18%;
+  background-color: #80808080;
+  border: 2px solid;
+}
+
 .active {
   color: green;
   border: 3px solid #168b18;

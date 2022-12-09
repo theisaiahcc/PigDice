@@ -278,6 +278,7 @@ window.onload = function () {
     get("roll").onclick = rollDice;
     get("pass").onclick = passTurn;
     get("new-game").onclick = newGame;
+    get("rulesBtn").onclick = displayRules;
 };
 function displayTotal() {
     get("total").innerText = "" + total;
@@ -295,4 +296,28 @@ function newGame() {
 }
 function scoreWins(n) {
     return n > 100;
+}
+
+let rulesMin = true;
+
+function displayRules(){
+    const rules = get("rules");
+    if(rulesMin){
+        const title = document.createElement("h2");
+        const node = document.createTextNode("Pig Dice Rules:");
+        title.appendChild(node);
+        rules.appendChild(title);
+        const para = document.createElement("p");
+        const node1 = document.createTextNode("Players take turns rolling a die. The roll is added to the running total. The player can pass turn to add the total to their score. The player may continue rolling and accumulating points, but if a 1 is rolled the total is reset and their turn is over. Play passes from player to player until someone hits 100.");
+        para.appendChild(node1);
+        rules.appendChild(para);
+        rules.classList.add("open");
+        rulesMin = false;
+    }
+    else{
+        rules.innerHTML = "";
+        rules.classList.remove("open");
+        rulesMin = true;
+    }
+    
 }
