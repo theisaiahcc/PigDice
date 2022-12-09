@@ -42,13 +42,13 @@ h2 {
   position: absolute;
 }
 
-#rulesBtn {
+#rulesBtn, #rules {
   position: fixed;
   right: 0;
 }
 
 .open {
-  width: 18%;
+  width: 30%;
   background-color: #80808080;
   border: 2px solid;
 }

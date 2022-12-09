@@ -47,8 +47,13 @@ h2{
     right:0;
 }
 
+#rules{
+    position:fixed;
+    right:0;
+}
+
 .open{
-    width: 18%;
+    width: 30%;
     border: 2px solid;
     background-color: rgba(128, 128, 128, 0.50);
 }
