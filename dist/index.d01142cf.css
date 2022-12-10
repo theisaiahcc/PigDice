@@ -11,6 +11,11 @@ h2 {
   position: relative;
 }
 
+#dice {
+  width: 9px;
+  margin-right: 10px;
+}
+
 #players {
   display: flex;
   position: absolute;

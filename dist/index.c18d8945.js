@@ -611,6 +611,7 @@ const velocities = [
     ]
 ];
 const renderer = new _three.WebGLRenderer();
+var bot = false;
 function diceRoll(roll) {
     renderer.shadowMap.enabled = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -745,19 +746,24 @@ function getRandomDec(max) {
     return Math.random() * max;
 }
 var total = 0;
+var num = 0;
 function rollDice() {
+    get("bot").disabled = true;
     get("dice").classList.remove("red");
     get("dice").value = "";
-    var num = generateNum(6);
+    num = generateNum(6);
     diceRoll(num);
     setTimeout(function() {
         get("dice").value = "" + num;
         if (num == 1) {
             get("dice").classList.add("red");
             nextTurn();
+            num = 0;
         } else {
+            if (bot && get("player-two").classList.contains("active")) setTimeout(botTurn, 2000);
             total += num;
             displayTotal();
+            num = 0;
         }
     }, 2000);
 }
@@ -783,9 +789,7 @@ function passTurn() {
 function nextTurn() {
     if (nextTurn.caller != passTurn) get("message").innerText = "You rolled a one. Switching players...";
     else get("message").innerText = "Switching players...";
-    get("new-game").disabled = true;
-    get("roll").disabled = true;
-    get("pass").disabled = true;
+    buttonsDisabled(true);
     setTimeout(changePlayers, 1150);
     function changePlayers() {
         var playerOne = get("player-one");
@@ -793,18 +797,17 @@ function nextTurn() {
         if (playerOne.classList.contains("active")) {
             playerOne.classList.remove("active");
             playerTwo.classList.add("active");
+            if (bot) setTimeout(botTurn, 1000);
         } else {
             playerTwo.classList.remove("active");
             playerOne.classList.add("active");
         }
+        setTimeout(function() {
+            buttonsDisabled(false);
+        }, 300);
         total = 0;
         displayTotal();
         get("message").innerText = "";
-        setTimeout(function() {
-            get("new-game").disabled = false;
-            get("roll").disabled = false;
-            get("pass").disabled = false;
-        }, 300);
     }
 }
 function get(id) {
@@ -815,11 +818,13 @@ window.onload = function() {
     get("pass").onclick = passTurn;
     get("new-game").onclick = newGame;
     get("rulesBtn").onclick = displayRules;
+    get("bot").onclick = playBot;
 };
 function displayTotal() {
     get("total").innerText = "" + total;
 }
 function newGame() {
+    get("bot").disabled = false;
     var playerOne = get("player-one");
     var playerTwo = get("player-two");
     playerTwo.classList.remove("active");
@@ -854,6 +859,43 @@ function displayRules() {
         get("rulesBtn").value = "Rules";
         rulesMin = true;
     }
+}
+function playBot() {
+    if (bot) playHuman();
+    else {
+        let player2 = get("opponent");
+        let botBtn = get("bot");
+        player2.innerText = "Bot:";
+        botBtn.value = "Play Person";
+        bot = true;
+    }
+}
+function playHuman() {
+    let player2 = get("opponent");
+    let botBtn = get("bot");
+    player2.innerText = "Player 2:";
+    botBtn.value = "Play Bot";
+    bot = false;
+}
+function botTurn() {
+    buttonsDisabled(true);
+    var botScore = parseInt(get("score-two"));
+    if (total < 25 && total > 10 && generateNum(10) == 1) {
+        passTurn();
+        buttonsDisabled(false);
+    } else if (total > 25 && generateNum(10) < 7) {
+        passTurn();
+        buttonsDisabled(false);
+    } else if (num == 1) buttonsDisabled(false);
+    else if (num + botScore >= 100) {
+        passTurn();
+        buttonsDisabled(false);
+    } else rollDice();
+}
+function buttonsDisabled(answer) {
+    get("new-game").disabled = answer;
+    get("roll").disabled = answer;
+    get("pass").disabled = answer;
 }
 
 },{"three":"ktPTu","cannon-es":"HCu3b","three/examples/jsm/controls/OrbitControls.js":"7mqRv","../img/die_1.gif":"hoNDP","../img/die_2.gif":"axMvH","../img/die_3.gif":"121VQ","../img/die_4.gif":"18XD5","../img/die_5.gif":"4S7aZ","../img/die_6.gif":"gkFVA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ktPTu":[function(require,module,exports) {
