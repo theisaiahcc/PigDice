@@ -771,6 +771,7 @@ function generateNum(max) {
     return Math.floor(Math.random() * max) + 1;
 }
 function passTurn() {
+    get("bot").disabled = true;
     var playerOne = get("player-one");
     if (playerOne.classList.contains("active")) {
         var currScore = parseInt(get("score-one").innerText);

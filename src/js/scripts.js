@@ -224,6 +224,7 @@ function generateNum(max) {
 }
 
 function passTurn() {
+    get("bot").disabled = true;
     var playerOne = get("player-one");
     if (playerOne.classList.contains("active")) {
         var currScore = parseInt(get("score-one").innerText);
