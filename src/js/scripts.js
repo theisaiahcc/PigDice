@@ -267,14 +267,19 @@ function nextTurn() {
             if(bot){
                 setTimeout(botTurn, 1000);
             }
+            else{
+                setTimeout(function () {
+                    buttonsDisabled(false);
+                }, 300);
+            }
         }
         else {
             playerTwo.classList.remove("active");
             playerOne.classList.add("active");
+            setTimeout(function () {
+                buttonsDisabled(false);
+            }, 300);
         }
-        setTimeout(function () {
-            buttonsDisabled(false);
-        }, 300);
         total = 0;
         displayTotal();
         get("message").innerText = "";
